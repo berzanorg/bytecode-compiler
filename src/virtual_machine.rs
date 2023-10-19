@@ -87,6 +87,32 @@ impl VirtualMachine {
                     let value_3 = value_1 + value_2;
                     self.stack.push(value_3);
                 }
+
+                Opcode::SUB => {
+                    let value_1 = self.stack.pop().ok_or(VmError::NoValueInStack)?;
+                    let value_2 = self.stack.pop().ok_or(VmError::NoValueInStack)?;
+                    let value_3 = value_1 - value_2;
+                    self.stack.push(value_3)
+                }
+
+                Opcode::MUL => {
+                    let value_1 = self.stack.pop().ok_or(VmError::NoValueInStack)?;
+                    let value_2 = self.stack.pop().ok_or(VmError::NoValueInStack)?;
+                    let value_3 = value_1 * value_2;
+                    self.stack.push(value_3);
+                }
+                Opcode::DIV => {
+                    let value_1 = self.stack.pop().ok_or(VmError::NoValueInStack)?;
+                    let value_2 = self.stack.pop().ok_or(VmError::NoValueInStack)?;
+                    let value_3 = value_1 / value_2;
+                    self.stack.push(value_3);
+                }
+                Opcode::MOD => {
+                    let value_1 = self.stack.pop().ok_or(VmError::NoValueInStack)?;
+                    let value_2 = self.stack.pop().ok_or(VmError::NoValueInStack)?;
+                    let value_3 = value_1 % value_2;
+                    self.stack.push(value_3);
+                }
                 Opcode::RET => {
                     return Ok(&self.stack);
                 }
