@@ -1,3 +1,6 @@
-fn main() {
-    println!("Hello, world!");
-}
+mod error;
+mod opcode;
+mod value;
+mod virtual_machine;
+
+fn main() {}
