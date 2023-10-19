@@ -1,0 +1,4 @@
+PUSH 10 
+PUSH 40
+ADD
+RET
