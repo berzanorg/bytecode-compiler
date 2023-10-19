@@ -2,7 +2,7 @@ use std::fmt::Display;
 
 #[derive(Debug)]
 pub enum VmError {
-    NoBytecodeToExecute,
+    RetOpcodeNotFound,
     NoIndexInBytecode,
     NoValueInBytecode,
     NoValueInStack,
@@ -12,7 +12,7 @@ pub enum VmError {
 impl Display for VmError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let msg = match self {
-            Self::NoBytecodeToExecute => "there is no bytecode to execute",
+            Self::RetOpcodeNotFound => "there is no `RET` opcode",
             Self::NoIndexInBytecode => "there is no index in bytecode",
             Self::NoValueInBytecode => "there is no value in bytecode",
             Self::NoValueInStack => "there is no value in stack",
@@ -57,6 +57,24 @@ impl<'a> Display for ParseError<'a> {
             }
             ParseError::MistakenIndex(index_string) => {
                 write!(f, "PARSING ERROR: `{index_string}` is not a valid index")
+            }
+        }
+    }
+}
+
+pub enum UserError<'a> {
+    FileNotFound(&'a str),
+    NoFilenameGiven,
+}
+
+impl<'a> Display for UserError<'a> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            UserError::FileNotFound(file_name) => {
+                write!(f, "USER ERROR: `{file_name}` is not found")
+            }
+            UserError::NoFilenameGiven => {
+                write!(f, "USER ERROR: no file name is given")
             }
         }
     }

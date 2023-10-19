@@ -118,7 +118,7 @@ impl VirtualMachine {
             }
         }
 
-        Err(VmError::NoBytecodeToExecute)
+        Err(VmError::RetOpcodeNotFound)
     }
 }
 
