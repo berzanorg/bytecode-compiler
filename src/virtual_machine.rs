@@ -21,11 +21,11 @@ impl VirtualMachine {
         }
     }
 
-    pub fn get_opcode_from_bytecode(&mut self) -> Option<Opcode> {
+    pub fn get_opcode_from_bytecode(&mut self) -> Option<Result<Opcode, VmError>> {
         let opcode = self
             .bytecode
             .get(self.program_counter)
-            .map(|byte| byte.clone().into());
+            .map(|byte| byte.clone().try_into());
 
         self.program_counter += 1;
 
@@ -62,8 +62,7 @@ impl VirtualMachine {
 
     pub fn run(&mut self) -> Result<&[Value], VmError> {
         while let Some(opcode) = self.get_opcode_from_bytecode() {
-            match opcode {
-                Opcode::INVALID => return Err(VmError::InvalidOpcode),
+            match opcode? {
                 Opcode::PUSH => {
                     let value = self.get_value_from_bytecode()?;
                     self.stack.push(value);
