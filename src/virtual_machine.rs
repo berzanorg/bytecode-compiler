@@ -15,7 +15,7 @@ impl VirtualMachine {
     pub fn new(bytecode: Vec<u8>) -> Self {
         Self {
             stack: vec![],
-            register: [0u64; REGISTER_SIZE],
+            register: [0i64; REGISTER_SIZE],
             bytecode,
             program_counter: 0,
         }
@@ -128,17 +128,17 @@ fn test_bytecode() {
     let mut bytecode: Vec<u8> = vec![];
 
     bytecode.push(Opcode::PUSH.into());
-    bytecode.extend_from_slice(&100_u64.to_le_bytes());
+    bytecode.extend_from_slice(&100_i64.to_le_bytes());
     bytecode.push(Opcode::PUSH.into());
-    bytecode.extend_from_slice(&200_u64.to_le_bytes());
+    bytecode.extend_from_slice(&200_i64.to_le_bytes());
     bytecode.push(Opcode::ADD.into());
     bytecode.push(Opcode::STORE.into());
     bytecode.push(0);
 
     bytecode.push(Opcode::PUSH.into());
-    bytecode.extend_from_slice(&20_u64.to_le_bytes());
+    bytecode.extend_from_slice(&20_i64.to_le_bytes());
     bytecode.push(Opcode::PUSH.into());
-    bytecode.extend_from_slice(&40_u64.to_le_bytes());
+    bytecode.extend_from_slice(&40_i64.to_le_bytes());
     bytecode.push(Opcode::ADD.into());
     bytecode.push(Opcode::STORE.into());
     bytecode.push(1);
@@ -155,5 +155,5 @@ fn test_bytecode() {
 
     let result = virtual_machine.run().unwrap();
 
-    assert_eq!(result, &[360_u64])
+    assert_eq!(result, &[360_i64])
 }
