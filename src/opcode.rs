@@ -8,6 +8,10 @@ pub enum Opcode {
     STORE,
     LOAD,
     ADD,
+    SUB,
+    MUL,
+    DIV,
+    MOD,
     RET,
 }
 
@@ -20,7 +24,11 @@ impl From<u8> for Opcode {
             3 => Self::STORE,
             4 => Self::LOAD,
             5 => Self::ADD,
-            6 => Self::RET,
+            6 => Self::SUB,
+            7 => Self::MUL,
+            8 => Self::DIV,
+            9 => Self::MOD,
+            10 => Self::RET,
             _ => Self::INVALID,
         }
     }
