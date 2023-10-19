@@ -66,8 +66,8 @@ fn test_tokenization() {
     PUSH -2
     SUB
     STORE 1
-    PUSH 20
     PUSH 10
+    PUSH 20
     DIV
     LOAD 0
     LOAD 1
@@ -76,8 +76,6 @@ fn test_tokenization() {
     ";
 
     let tokens = tokenize(source_code);
-
-    println!("{:?}", tokens);
 
     assert_eq!(
         &tokens,
@@ -97,9 +95,9 @@ fn test_tokenization() {
             Token::Opcode("STORE"),
             Token::Number("1"),
             Token::Opcode("PUSH"),
-            Token::Number("20"),
-            Token::Opcode("PUSH"),
             Token::Number("10"),
+            Token::Opcode("PUSH"),
+            Token::Number("20"),
             Token::Opcode("DIV"),
             Token::Opcode("LOAD"),
             Token::Number("0"),

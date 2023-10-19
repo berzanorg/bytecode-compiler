@@ -42,8 +42,8 @@ fn test_compiling() {
         Expression::PUSH(-2),
         Expression::SUB,
         Expression::STORE(1),
-        Expression::PUSH(20),
         Expression::PUSH(10),
+        Expression::PUSH(20),
         Expression::DIV,
         Expression::LOAD(0),
         Expression::LOAD(1),
@@ -57,8 +57,8 @@ fn test_compiling() {
         &bytecode,
         &[
             0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 4, 2, 0, 0, 6, 0, 0, 0, 0, 0,
-            0, 0, 0, 254, 255, 255, 255, 255, 255, 255, 255, 5, 2, 1, 0, 20, 0, 0, 0, 0, 0, 0, 0,
-            0, 10, 0, 0, 0, 0, 0, 0, 0, 7, 3, 0, 3, 1, 6, 9
+            0, 0, 0, 254, 255, 255, 255, 255, 255, 255, 255, 5, 2, 1, 0, 10, 0, 0, 0, 0, 0, 0, 0,
+            0, 20, 0, 0, 0, 0, 0, 0, 0, 7, 3, 0, 3, 1, 6, 9
         ]
     );
 }
